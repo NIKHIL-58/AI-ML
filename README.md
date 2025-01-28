@@ -211,7 +211,7 @@ A Python-based implementation of a RAG chatbot that combines vector database sea
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone <repository-https://github.com/NIKHIL-58/AI-ML/tree/main/Assignment_2>
 cd rag-chatbot
 ```
 
