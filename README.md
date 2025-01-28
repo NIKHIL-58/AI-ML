@@ -26,7 +26,7 @@ This project implements an end-to-end sentiment analysis pipeline for IMDB movie
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone <repository-https://github.com/NIKHIL-58/AI-ML.git>
 cd sentiment-analysis
 ```
 
