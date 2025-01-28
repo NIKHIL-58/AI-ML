@@ -1,4 +1,4 @@
-# IMDB Movie Review Sentiment Analysis
+# Assignment_1 IMDB Movie Review Sentiment Analysis
 
 This project implements an end-to-end sentiment analysis pipeline for IMDB movie reviews using FastAPI. The system downloads the IMDB dataset, stores reviews in a SQLite database, trains a sentiment classification model, and serves predictions through a REST API.
 
@@ -169,4 +169,159 @@ Potential enhancements:
 3. Model retraining endpoint
 4. Performance monitoring and logging
 5. Docker containerization
+
+
+
+
+
+
+
+
+# Assignment_2 RAG (Retrieval-Augmented Generation) Chatbot
+
+A Python-based implementation of a RAG chatbot that combines vector database search with language model generation. The system features both a REST API and a Gradio web interface for easy interaction.
+
+## 🌟 Features
+
+- **RAG-based Question Answering**: Combines retrieval and generation for accurate responses
+- **Dual Interface**: 
+  - REST API for programmatic access
+- **Vector Search**: Uses FAISS for efficient similarity search
+- **Wikipedia Integration**: Automatically fetches and indexes AI-related content
+- **Chat History**: Stores conversation history in MySQL database
+- **Real-time Response**: Fast response generation using GPT-2
+
+## 🛠️ Technologies Used
+
+- Flask (REST API)
+- Gradio (Web UI)
+- FAISS (Vector Database)
+- Sentence Transformers (Embeddings)
+- MySQL (Chat History)
+- Hugging Face Transformers (Text Generation)
+- Wikipedia API (Content Fetching)
+
+## 📋 Prerequisites
+
+- Python 3.10 or higher
+- MySQL Server
+- pip package manager
+
+## 🚀 Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd rag-chatbot
+```
+
+2. Install required packages:
+```bash
+pip install -r requirements.txt
+```
+
+3. Set up MySQL database:
+```sql
+CREATE DATABASE ragchatbot;
+```
+
+4. Configure environment variables (create .env file):
+```
+MYSQL_HOST=localhost
+MYSQL_USER=your_username
+MYSQL_PASSWORD=your_password
+MYSQL_DB=ragchatbot
+```
+
+## 🎯 Usage
+
+### Running the Application
+
+Start the application:
+```bash
+python app.py
+```
+
+This will:
+1. Initialize the vector store with Wikipedia content
+2. Start the Flask API server on port 5000
+
+### REST API Endpoints
+
+1. **Chat Endpoint**
+   - URL: `http://127.0.0.1:5000/chat`
+   - Method: `POST`
+   - Request Body:
+     ```json
+     {
+         "query": "What is artificial intelligence?"
+     }
+     ```
+   - Example Response:
+     ```json
+     {
+       "answer": "Context: Artificial intelligence (AI), in its broadest sense...",
+       "retrieved_chunks": [
+         {
+           "score": 0.33678317070007324,
+           "text": "Artificial intelligence (AI), in its broadest sense..."
+         },
+         {
+           "score": 0.5507127046585083,
+           "text": "It is a field of research in computer science..."
+         },
+         {
+           "score": 0.7288822531700134,
+           "text": "Artificial intelligence was founded as an academic discipline..."
+         }
+       ]
+     }
+     ```
+
+2. **History Endpoint**
+   - URL: `http://127.0.0.1:5000/history`
+   - Method: `GET`
+   - Example Response:
+     ```json
+     [
+         {
+             "content": "What is artificial intelligence?",
+             "id": 1,
+             "role": "user",
+             "timestamp": "Tue, 28 Jan 2025 12:32:30 GMT"
+         },
+         {
+             "content": "Context: Artificial intelligence (AI)...",
+             "id": 2,
+             "role": "system",
+             "timestamp": "Tue, 28 Jan 2025 12:32:39 GMT"
+         }
+     ]
+     ```
+
+
+## 📁 Project Structure
+```
+rag_chatbot/
+├── app.py                  # Main application file
+├── config.py              # Configuration settings
+├── requirements.txt       # Package dependencies
+├── database/             # Database related files
+│   ├── models.py         # Database models
+│   └── db_manager.py     # Database operations
+├── embeddings/           # Embedding related files
+│   └── embedding_manager.py
+└── retrieval/            # Vector store operations
+    └── vector_store.py
+```
+
+## ⚠️ Notes
+
+- The system uses GPT-2 for text generation. For production use, consider using a more sophisticated model.
+- The vector store is initialized with Wikipedia content at startup. This may take a few minutes.
+- Chat history is persisted in MySQL and can be accessed via the `/history` endpoint.
+
+## 🤝 Contributing
+
+Feel free to open issues and pull requests for improvements!
 
